@@ -2,5 +2,7 @@ package com.painel.domain.cliente;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ClientesRepository extends JpaRepository<ClienteService, Integer> {
+public interface ClientesRepository extends JpaRepository<Clientes, Integer> {
+
+    Clientes findByCpf(String cpf);
 }
