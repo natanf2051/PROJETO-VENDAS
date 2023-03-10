@@ -1,8 +1,10 @@
 package com.painel.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,8 +47,12 @@ public class inicio {
     }
 
     @GetMapping("/inicio/{cpf}")
-    public ResponseEntity listaCpf(@PathVariable String cpf){
-        var clienteCpf = clientesRepository.findByCpf(cpf);
-    return ResponseEntity.ok().body(new DetalheCliente(clienteCpf));
+    public ResponseEntity<Clientes> listaCpf(@PathVariable String cpf){
+        Clientes clienteCpf = clientesRepository.findByCpf(cpf);
+        if(clienteCpf != null){
+            return ResponseEntity.ok(clienteCpf);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
     }
 }

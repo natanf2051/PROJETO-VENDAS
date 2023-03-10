@@ -1,5 +1,7 @@
 package com.painel.domain.cliente;
 
+import org.hibernate.ObjectNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.painel.domain.vendas.Vendas;
@@ -13,13 +15,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "cliente")
-@Table(name = "clientes")
+@Entity(name = "clientes")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Transactional
 public class Clientes {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

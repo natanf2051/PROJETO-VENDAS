@@ -1,8 +1,14 @@
 package com.painel.domain.cliente;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
-public interface ClientesRepository extends JpaRepository<Clientes, Integer> {
+@Repository
+public interface ClientesRepository extends JpaRepository<Clientes, String> {
 
-    Clientes findByCpf(String cpf);
+   //@Query("SELECT * FROM clientes WHERE cpf = :cpf")
+   Clientes findByCpf(String cpf);
+    
 }
