@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,9 @@ public class inicio {
     @Autowired
     private ClientesRepository clientesRepository;
 
+    @Autowired
+    Clientes clientes;
+
     @PostMapping
     @Transactional
     public ResponseEntity cadastrar(@RequestBody @Valid DadosCliente dadosCliente, UriComponentsBuilder uriBuilder) {
@@ -46,7 +50,7 @@ public class inicio {
         return ResponseEntity.ok(clientes);
     }
 
-    @GetMapping("/inicio/{cpf}")
+    @GetMapping("/inicio = {cpf}")
     public ResponseEntity<Clientes> listaCpf(@PathVariable String cpf){
         Clientes clienteCpf = clientesRepository.findByCpf(cpf);
         if(clienteCpf != null){

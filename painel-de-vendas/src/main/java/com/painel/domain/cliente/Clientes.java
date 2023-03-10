@@ -2,15 +2,17 @@ package com.painel.domain.cliente;
 
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.painel.domain.vendas.Vendas;
+
+import ch.qos.logback.core.net.server.Client;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Transactional
+@Service
 public class Clientes {
 
 
@@ -33,7 +35,6 @@ public class Clientes {
     @Embedded
     private Vendas vendaService;
 
-
     public Clientes(DadosCliente dados) {
         this.nome = dados.nome();
         this.cpf = dados.cpf();
@@ -42,7 +43,4 @@ public class Clientes {
 
     }
 
-    // public Optional<ClienteService> buscaCpf(int cpf){
-    // return clientesRepository.findBycpf(cpf);
-    // }
 }
